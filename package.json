@@ -2,7 +2,7 @@
   "name": "easycollapse",
 	"displayName": "easyCollapse",
 	"description": "Collapse code automatically when VSCode starts to help organise your workspace",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
@@ -11,17 +11,18 @@
 	],
 	"activationEvents": [
 		"onStartupFinished",
-		"onCommand:easycollapse.easycollapse"
+		"onCommand:easycollapse.easycollapse",
+		"onCommand:easycollapse.typeit"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            		"command": "easycollapse.easycollapse",
-            		"title": "Collapse Functions"
+            "command": "easycollapse.easycollapse",
+            "title": "Collapse Functions"
 		},
 		{
-			"command": "easycollapse.typer",
-            		"title": "Type It!"
+			"command": "easycollapse.typeit",
+            "title": "Type It!"
 		}],
 		"keybindings": [{
 			"command": "easycollapse.easycollapse",

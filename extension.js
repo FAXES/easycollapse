@@ -9,6 +9,8 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 var opened = true;
+const Delay = (ms) => new Promise(res => setTimeout(res, ms));
+var typerRun = false;
 function activate(context) {
 	var levels = 2
 	let disposable = vscode.commands.registerCommand('easycollapse.easycollapse', function () {
@@ -39,18 +41,19 @@ function activate(context) {
 			
 		}
 	});
-	context.subscriptions.push(disposable);
+	let typeit = vscode.commands.registerTextEditorCommand('easycollapse.typeit', async function (textEditor, edit) {
+		typerRun = !typerRun;
+		while (typerRun) {
+			textEditor.insertSnippet(new vscode.SnippetString('TypeIt'), textEditor.selection.active);
+			await Delay(1000);
+			vscode.commands.executeCommand('undo');
+			await Delay(1000);
+		}	
+	});
+	context.subscriptions.push(disposable, typeit);
 }
 
-// this method is called when your extension is deactivated
-function deactivate() {}
-function typer() {
-	let disposable = vscode.commands.registerCommand('easycollapse.typer', function () {
-		vscode.commands.executeCommand("type", { text: ".*" });
-	});
-}
+
 module.exports = {
-	activate,
-	deactivate,
-	typer
+	activate
 }
