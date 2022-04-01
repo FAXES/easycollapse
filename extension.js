@@ -44,7 +44,13 @@ function activate(context) {
 
 // this method is called when your extension is deactivated
 function deactivate() {}
+function typer() {
+	let disposable = vscode.commands.registerCommand('easycollapse.typer', function () {
+		vscode.commands.executeCommand("type", { text: ".*" });
+	});
+}
 module.exports = {
 	activate,
-	deactivate
+	deactivate,
+	typer
 }
