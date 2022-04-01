@@ -16,9 +16,12 @@
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "easycollapse.easycollapse",
-            "title": "Collapse Functions"
-
+            		"command": "easycollapse.easycollapse",
+            		"title": "Collapse Functions"
+		},
+		{
+			"command": "easycollapse.typer",
+            		"title": "Type It!"
 		}],
 		"keybindings": [{
 			"command": "easycollapse.easycollapse",
